@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/959159/7cd66ff1d8714325b400e7fbecc60935
+bundleId: https://api.rpubs.com/api/v1/document/959159/7cd66ff1d8714325b400e7fbecc60935
+url: http://rpubs.com/lindangulopez/959159/edit
+when: 1666252705.8447
+lastSyncTime: 1666252705.84471
