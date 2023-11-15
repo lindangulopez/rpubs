@@ -1,0 +1,55 @@
+---
+title: "Un exemple de présentation sous R-Markdown"
+author: "Amandine Blin"
+date: "20/10/2022"
+output:
+  slidy_presentation: default
+  beamer_presentation:
+    df_print: kable
+    citation_package: biblatex
+    includes:
+      in_header: avant_exemple_presentation.tex
+bibliography: bibliography.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Chargement du jeu de données `iris`
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+* Chargez le jeu de données iris disponible dans les packages de base. 
+
+```{r dataris, echo=TRUE}
+data(iris)
+head(iris)
+```
+
+# Résumé statistique du jeu de données `iris`
+
+
+```{r tab, echo=TRUE, eval=TRUE}
+iris %>%   group_by(Species) %>% 
+  summarise(Moyenne_longueur_sepale = mean(Sepal.Length), 
+            SD_longueur_sepale=sd(Sepal.Length))
+```
+
+# Un exemple de boxplot
+
+
+```{r, echo=FALSE, eval=TRUE, out.width="90%"}
+iris %>% ggplot(aes(x=Species, y=Sepal.Width)) + 
+  geom_boxplot(aes(colour=Species, fill=Species), show.legend = FALSE) + 
+  theme_bw() + xlab("Espèce") + ylab("Largeur des sépales")
+```
+
+# Références  {.allowframebreaks}
+
+---
+nocite: '@*'
+---
+

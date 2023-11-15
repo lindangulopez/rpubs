@@ -1,0 +1,59 @@
+---
+title: "Exemple de présentation Quarto"
+author: "Amandine Blin"
+institute: UAR 2700 2AD
+format: 
+  beamer:
+    navigation: empty
+    theme: CambridgeUS
+    colortheme: lily
+    header-includes: |
+      \titlegraphic{\includegraphics[width=0.4\paperwidth]{quarto_logo.png}}
+    cite-method: biblatex
+editor: visual
+bibliography: bibliography.bib
+---
+
+# Chargement du jeu de données `iris`
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+-   Chargez le jeu de données iris disponible dans les packages de base.
+
+```{r dataris}
+#| echo: true
+library(knitr)
+data(iris)
+kable(head(iris))
+```
+
+# Résumé statistique du jeu de données `iris`
+
+```{r tab}
+#| echo: true
+#| eval: true
+iris %>%   group_by(Species) %>% 
+  summarise(Moyenne_longueur_sepale = mean(Sepal.Length), 
+            SD_longueur_sepale=sd(Sepal.Length)) %>% kable()
+```
+
+# Un exemple de boxplot
+
+```{r, out.width="90%"}
+#| echo: false
+#| eval: true
+iris %>% ggplot(aes(x=Species, y=Sepal.Width)) + 
+  geom_boxplot(aes(colour=Species, fill=Species), show.legend = FALSE) + 
+  theme_bw() + xlab("Espèce") + ylab("Largeur des sépales")
+```
+
+# Références {.allowframebreaks}
+
+---
+nocite: '@*'
+---

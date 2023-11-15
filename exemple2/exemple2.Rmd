@@ -1,0 +1,71 @@
+---
+title: "Exemple 2 : Création d'un document .pdf"
+author: |
+  | Amandine Blin
+  | UAR 2700 2AD, Service Analyse de Données
+date: "20/10/2022"
+lang: fr
+output:
+  pdf_document:
+    number_section: yes
+    toc: true
+    toc_depth: 3
+    df_print: kable
+    citation_package: biblatex
+geometry: "left=2cm,right=2cm,top=2cm,bottom=2cm"
+bibliography : bibliography.bib
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+\newpage
+
+# Chargement du jeu de données **iris**
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+* Chargez le jeu de données iris disponible dans les packages de base. 
+
+```{r dataris, echo=TRUE}
+data(iris)
+head(iris)
+```
+
+# Description du jeu de données *iris*
+
+
+* Calculons dans un tableau la moyenne, la variance, l'écart-type, la médiane de la longueur des sépales pour chaque espèce.
+
+```{r tab, echo=TRUE, eval=TRUE}
+iris %>%   group_by(Species) %>% 
+  summarise(Moyenne_longueur_sepale = mean(Sepal.Length), 
+            SD_longueur_sepale=sd(Sepal.Length), 
+            mediane_longueur_sepale=median(Sepal.Length))
+```
+
+
+* Effectuons le boxplot de la largeur des sépales en fonction des espèces.
+
+
+```{r graph1, echo=TRUE, eval=TRUE, out.width="70%"}
+iris %>% ggplot(aes(x=Species, y=Sepal.Width)) + 
+  geom_boxplot(aes(colour=Species, fill=Species), show.legend = FALSE) + 
+  theme_bw() + xlab("Espèce") + ylab("Largeur des sépales")
+```
+
+# Références
+
+---
+nocite: '@*'
+---
+
+
+
+
+

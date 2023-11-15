@@ -1,0 +1,54 @@
+---
+title: 'Premier exemple : le jeu de données iris'
+author: "Amandine Blin"
+date: '20/10/2022'
+output: 
+  html_document:
+    toc: true
+    theme: united
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Chargement du jeu de données `iris`
+
+Chargeons le jeu de données `iris`. Ce jeu de données est disponible dans les packages de base de `R`.
+
+```{r}
+data(iris)
+```
+
+# Quelques opérations simples
+
+```{css, echo=FALSE}
+.customiser {
+  background-color: lightyellow;
+  border: 4px solid orange;
+}
+```
+
+```{r class.source="customiser"}
+summary(iris)
+```
+
+1.  Effectuer un tableau de données
+
+```{r}
+knitr::kable(head(iris), caption="Jeu de données iris")
+```
+
+2.  Effectuer un graphique
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+iris %>% 
+  ggplot(aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + 
+  geom_point() +
+  theme_bw()
+```
+
+
+
